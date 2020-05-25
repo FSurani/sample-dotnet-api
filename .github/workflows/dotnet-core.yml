@@ -31,21 +31,23 @@ jobs:
       - name: Checkout the repository
         uses: actions/checkout@v2
       
+      - name: Authenticate into Google Cloud Platform
+        uses: actions/gcloud/auth@master
+        env:
+          GCLOUD_AUTH: ${{ secrets.GCLOUD_AUTH }}
+      
       - name: Build Docker image
         run: |
             docker build . --tag gcr.io/${{ secrets.GCLOUD_PROJECT }}/${{ secrets.GCLOUD_APP_NAME }}
-    
-      - name: Authenticate into Google Cloud Platform
-        uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
-        with:
-          service_account_email: ${{ secrets.GCLOUD_EMAIL }}
-          service_account_key: ${{ secrets.GCLOUD_AUTH }}
           
       - name: Configure Docker to use Google Cloud Platform
         run: "gcloud auth configure-docker --quiet"
     
       - name: Push image to Google Cloud Container Registry
-        run: docker push gcr.io/${{ secrets.GCLOUD_PROJECT }}/${{ secrets.GCLOUD_APP_NAME }}
+        uses: actions/gcloud/cli@master
+        with:
+          entrypoint: sh
+          args: -c "docker push gcr.io/${{ secrets.GCLOUD_PROJECT }}/${{ secrets.GCLOUD_APP_NAME }}"
     
       - name: Install beta commands and deploy on cloud run
         run: |
