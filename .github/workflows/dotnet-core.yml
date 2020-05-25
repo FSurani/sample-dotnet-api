@@ -45,7 +45,8 @@ jobs:
       # Build and push image to Google Container Registry
       - name: Build
         run: |
-          gcloud builds submit -t gcr.io/${{ secrets.GCLOUD_PROJECT }}/${{ secrets.GCLOUD_APP_NAME }}
+          gcloud builds submit -t gcr.io/argon-radius-278308/cloud-run-github-actions
+          #gcloud builds submit -t gcr.io/${{ secrets.GCLOUD_PROJECT }}/${{ secrets.GCLOUD_APP_NAME }}
       
       # Deploy image to Cloud Run
       - name: Deploy
