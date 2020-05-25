@@ -8,9 +8,8 @@ on:
 
 jobs:
   build:
-
+    name: Build and Test
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v2
     - name: Setup .NET Core
@@ -23,3 +22,11 @@ jobs:
       run: dotnet build --configuration Release --no-restore
     - name: Test
       run: dotnet test --no-restore --verbosity normal
+
+pushAndDeploy:
+  name: Push Constainer and Publish
+  needs: build
+  runs-on: ubuntu-latest
+  steps:
+    - name: Checkout the repository
+    - uses: actions/checkout@v2
