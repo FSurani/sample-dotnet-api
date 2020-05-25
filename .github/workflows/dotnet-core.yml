@@ -37,16 +37,10 @@ jobs:
           project_id: ${{ secrets.GCLOUD_PROJECT }}
           service_account_key: ${{ secrets.GCLOUD_AUTH }}
       
-      # Configure gcloud CLI
-      #- name: gcloud Set up
-      #  run: |
-      #    gcloud config set project ${{ secrets.GCLOUD_PROJECT }}
-      #    #gcloud config set project ${{ secrets.GCLOUD_PROJECT }}
-      
       # Build and push image to Google Container Registry
-      #- name: Build
-      #  run: |
-      #    gcloud builds submit -t gcr.io/${{ secrets.GCLOUD_PROJECT }}/${{ secrets.GCLOUD_APP_NAME }}
+      - name: Build
+        run: |
+          gcloud builds submit -t gcr.io/${{ secrets.GCLOUD_PROJECT }}/${{ secrets.GCLOUD_APP_NAME }}
     
       
        #Deploy image to Cloud Run
