@@ -37,12 +37,12 @@ jobs:
           service_account_email: ${{ secrets.GCLOUD_EMAIL }}
           service_account_key: ${{ secrets.GCLOUD_AUTH }}
       
-      - name: Build Docker image
-        run: |
-            docker build . --tag gcr.io/${{ secrets.GCLOUD_PROJECT }}/${{ secrets.GCLOUD_APP_NAME }}
-          
       - name: Configure Docker to use Google Cloud Platform
         run: "gcloud auth configure-docker --quiet"
+
+      - name: Build Docker image
+        run: |
+            docker build . --tag gcr.io/${{ secrets.GCLOUD_PROJECT }}/${{ secrets.GCLOUD_APP_NAME }}      
     
       - name: Push image to Google Cloud Container Registry
         uses: actions/gcloud/cli@master
