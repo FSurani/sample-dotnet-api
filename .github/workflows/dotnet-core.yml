@@ -40,9 +40,9 @@ jobs:
       - name: Configure Docker to use Google Cloud Platform
         run: "gcloud auth configure-docker --quiet"
 
-      #- name: Build Docker image
-      #  run: |
-      #      docker build . --tag gcr.io/${{ secrets.GCLOUD_PROJECT }}/${{ secrets.GCLOUD_APP_NAME }}      
+      - name: Build Docker image
+        run: |
+            docker build . --tag gcr.io/${{ secrets.GCLOUD_PROJECT }}/${{ secrets.GCLOUD_APP_NAME }}      
     
       #- name: Push image to Google Cloud Container Registry
       #  uses: actions/gcloud/cli@master
