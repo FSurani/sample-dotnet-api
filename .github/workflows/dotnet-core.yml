@@ -34,14 +34,14 @@ jobs:
       - name: Authenticate into Google Cloud Platform
         uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
         with:
-          project_id: ${{ secrets.GCLOUD_PROJECT }}
+          project_id: argon-radius-278308
           service_account_key: ${{ secrets.GCLOUD_AUTH }}
       
       # Build and push image to Google Container Registry
       - name: Build
         run: |
           gcloud config get-value project
-          gcloud builds submit -t gcr.io/${{ secrets.GCLOUD_PROJECT }}/${{ secrets.GCLOUD_APP_NAME }}
+          gcloud builds submit -t gcr.io/argon-radius-278308/${{ secrets.GCLOUD_APP_NAME }}
     
       
        #Deploy image to Cloud Run
