@@ -42,7 +42,8 @@ jobs:
 
       - name: Build Docker image
         run: |
-            docker build -t gcr.io/${{ secrets.GCLOUD_PROJECT }}/${{ secrets.GCLOUD_APP_NAME }} .      
+            echo ${{ secrets.GCLOUD_PROJECT }}/${{ secrets.GCLOUD_APP_NAME }}
+            #docker build -t gcr.io/${{ secrets.GCLOUD_PROJECT }}/${{ secrets.GCLOUD_APP_NAME }} .      
     
       #- name: Push image to Google Cloud Container Registry
       #  uses: actions/gcloud/cli@master
