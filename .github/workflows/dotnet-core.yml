@@ -45,14 +45,14 @@ jobs:
     
       
        #Deploy image to Cloud Run
-     # - name: Deploy
-     #   run: |
-     #     gcloud run deploy ${{ secrets.GCLOUD_APP_NAME }} \
-     #       --region us-east1 \
-     #       --image gcr.io/${{ secrets.GCLOUD_PROJECT }}/${{ secrets.GCLOUD_APP_NAME }} \
-     #       --port 5000 \
-     #       --platform managed \
-     #       --allow-unauthenticated
+      - name: Deploy
+        run: |
+          gcloud run deploy ${{ secrets.GCLOUD_APP_NAME }} \
+            --region us-east1 \
+            --image gcr.io/argon-radius-278308/${{ secrets.GCLOUD_APP_NAME }} \
+            --port 5000 \
+            --platform managed \
+            --allow-unauthenticated
       
       #- name: Build Docker image
       #  run: |
