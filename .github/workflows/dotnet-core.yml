@@ -40,6 +40,7 @@ jobs:
       # Build and push image to Google Container Registry
       - name: Build
         run: |
+          gcloud config get-value project
           gcloud builds submit -t gcr.io/${{ secrets.GCLOUD_PROJECT }}/${{ secrets.GCLOUD_APP_NAME }}
     
       
